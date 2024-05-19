@@ -7,7 +7,7 @@
     amazon.aws.ec2_instance:
       name: "Application"
       key_name: "raven"
-      instance_type: t2.medium
+      instance_type: t2.micro
       security_group: default
       network:
         assign_public_ip: true
