@@ -5,7 +5,7 @@
   tasks:
   - name: start an instance with a public IP address
     amazon.aws.ec2_instance:
-      name: "Application EC2 Instance"
+      name: "Application"
       key_name: "raven"
       instance_type: t2.medium
       security_group: default
