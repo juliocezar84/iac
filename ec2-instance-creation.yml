@@ -1,12 +1,13 @@
-- name: EC2 Instance Creation
+- name: Create EC2
   hosts: localhost
   vars:
     ansible_python_interpreter: "/usr/bin/python3.9"
   tasks:
+
   - name: start an instance with a public IP address
     amazon.aws.ec2_instance:
-      name: "Application"
-      key_name: "raven"
+      name: "raven"
+      key_name: "mack2"
       instance_type: t2.micro
       security_group: default
       network:
