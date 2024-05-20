@@ -1,4 +1,4 @@
-- name: create a new key pair, returns generated private key
+- name: Key Pair Creation
   hosts: localhost
   gather_facts: no
   vars:
@@ -8,4 +8,3 @@
     amazon.aws.ec2_key:
       name: application_key
     no_log: true
-    register: aws_ec2_key_pair

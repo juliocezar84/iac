@@ -1,11 +1,12 @@
 - name: Virtual Private Cloud Creation
   hosts: localhost
+  gather_facts: no
   vars:
     ansible_python_interpreter: "/usr/bin/python3.9"
   tasks:
   - name: create VPC
     ec2_vpc_net:
-      name: "Teste"
+      name: "Application VPC"
       cidr_block: "10.10.0.0/24"
       region: "us-east-1"
       state: present
