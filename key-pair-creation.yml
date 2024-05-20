@@ -1,5 +1,7 @@
 - name: create a new key pair, returns generated private key
-  # use no_log to avoid private key being displayed into output
+  hosts: localhost
+  tasks:
+  - name: create a key pair
   amazon.aws.ec2_key:
     name: application_key
   no_log: true
