@@ -1,15 +1,15 @@
 - name: EC2 Instance Creation
-    hosts: localhost
-    gather_facts: no
-    vars:
-        ansible_python_interpreter: "/usr/bin/python3.9"
-    tasks:
-    - name: start an instance with a public IP address
-    amazon.aws.ec2_instance:
-        name: "ec2-webapplication-prd-useast1-001"
-        key_name: "key-webapplication-prd-useast1-001"
-        instance_type: t2.medium
-        #security_group: "sg-webapplication-prd-useast1-001"
-        network:
-            assign_public_ip: true
-        image_id: ami-0fe630eb857a6ec83
+  hosts: localhost
+  gather_facts: no
+  vars:
+    ansible_python_interpreter: "/usr/bin/python3.9"
+  tasks:
+  - name: start an instance with a public IP address
+  amazon.aws.ec2_instance:
+    name: "ec2-webapplication-prd-useast1-001"
+    key_name: "key-webapplication-prd-useast1-001"
+    instance_type: t2.medium
+    #security_group: "sg-webapplication-prd-useast1-001"
+    network:
+      assign_public_ip: true
+    image_id: ami-0fe630eb857a6ec83
