@@ -11,5 +11,3 @@
       region: "us-east-1"
       state: present
     register: vpc
-    tags:
-      Environment: Production
