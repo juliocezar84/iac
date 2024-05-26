@@ -9,7 +9,7 @@
       name: "ec2-webapplication-prd-useast1-001"
       key_name: "key-webapplication-prd-useast1-001"
       instance_type: t2.medium
-      security_group: "sg-webapplication-prd-useast1-001"
+      #security_group: "sg-webapplication-prd-useast1-001"
       network:
         assign_public_ip: true
       image_id: ami-0fe630eb857a6ec83
