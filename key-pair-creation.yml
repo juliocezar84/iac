@@ -6,5 +6,5 @@
   tasks:
   - name: create a key pair
     amazon.aws.ec2_key:
-      name: application_key
+      name: "key-webapplication-prd-useast1-001" 
     no_log: true

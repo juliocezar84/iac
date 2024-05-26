@@ -1,11 +1,12 @@
-- name: AWS S3 Bucket List - Ansible
+- name: Security Group Creation
   hosts: localhost
+  gather_facts: no
   vars:
     ansible_python_interpreter: "/usr/bin/python3.9"
   tasks:
-  - name: create VPC
-    ec2_vpc_net:
-      name: "Teste"
+  - name: create security group
+    amazon.aws.ec2_security_group:
+      name: "sg-webapplication-prd-useast1-001"
       cidr_block: "10.10.0.0/24"
       region: "us-east-1"
       state: present

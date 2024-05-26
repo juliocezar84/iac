@@ -6,7 +6,7 @@
   tasks:
   - name: create VPC
     ec2_vpc_net:
-      name: "Application VPC"
+      name: "vpc-webapplication-prd-useast1-001"
       cidr_block: "10.10.0.0/24"
       region: "us-east-1"
       state: present
