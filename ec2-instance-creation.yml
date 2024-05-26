@@ -13,8 +13,3 @@
         network:
             assign_public_ip: true
         image_id: ami-0fe630eb857a6ec83
-    notify: "stop EC2 instance"
-    handlers:
-        - name: Restart EC2 Instance
-        command: echo "stopping the instance"
-        listen: "stop EC2 instance"
