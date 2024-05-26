@@ -15,3 +15,7 @@
       image_id: ami-0fe630eb857a6ec83
       state: running
       wait: yes
+    register: instance_properties
+  - name: show variables
+    debug:
+      var: instance_properties
