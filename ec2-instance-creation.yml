@@ -13,9 +13,4 @@
       network:
         assign_public_ip: true
       image_id: ami-0fe630eb857a6ec83
-    notify: "stop instance"
-  handlers:
-    - name: stop instance
-      command: echo "Stop instance"
-      listen: "stop instance"
-    
+      wait: yes
