@@ -18,4 +18,4 @@
     register: instance_properties
   - name: show variables
     debug:
-      var: instance_properties.public_ip_address
+      var: instance_properties.instances
