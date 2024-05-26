@@ -14,4 +14,4 @@
         assign_public_ip: true
       image_id: ami-0fe630eb857a6ec83
       tags:
-        Environment: Testing
+        Environment: Production
