@@ -19,7 +19,7 @@
   - name: show variables
     debug:
       var: instance_properties.instances[0].public_ip_address
-  - name: Replace a localhost entry with our own
+  - name: Update Ansible Hosts File
     ansible.builtin.lineinfile:
       path: /etc/ansible/hosts
       search_string: 'application_server ansible_host'
