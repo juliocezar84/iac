@@ -6,4 +6,8 @@
     - name: Install Apache
       yum:
         name: httpd
-        state: present
+        state: latest
+    - name: Start Apache
+      ansible.builtin.service:
+        name: httpd
+        state: started        
