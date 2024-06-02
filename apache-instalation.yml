@@ -1,6 +1,7 @@
 - name: Apache Instalation
   hosts: application_server
   gather_facts: no
+  become: true
   tasks:
     - name: Install Apache
       yum:
