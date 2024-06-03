@@ -1,4 +1,8 @@
 - name: Copy Files to Application Server
+  hosts: localhost
+  gather_facts: no
+  vars:
+    ansible_python_interpreter: "/usr/bin/python3.9"
   tasks:
   - name: create a key pair
     copy:
