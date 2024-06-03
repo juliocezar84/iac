@@ -7,6 +7,7 @@
   tasks:
   - name: copy files
     copy:
+      force: true
       src: /home/jenkins/code/
       dest: /var/www/html/
       owner: ec2-user
