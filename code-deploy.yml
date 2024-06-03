@@ -1,5 +1,5 @@
 - name: Copy Files to Application Server
-  hosts: localhost
+  hosts: application_server
   gather_facts: no
   become: true
   vars:
