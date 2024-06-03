@@ -5,7 +5,7 @@
   vars:
     ansible_python_interpreter: "/usr/bin/python3.9"
   tasks:
-  - name: create a key pair
+  - name: copy files
     copy:
       src: /home/jenkins/code
       dest: /var/www/html/
