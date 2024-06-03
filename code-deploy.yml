@@ -7,7 +7,7 @@
   tasks:
   - name: copy files
     copy:
-      src: /home/jenkins/code/*
+      src: /home/jenkins/code/
       dest: /var/www/html/
       owner: ec2-user
       mode: '0644'
