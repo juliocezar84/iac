@@ -16,5 +16,5 @@
       content: "{{ ec2_key_result.key.private_key }}"
       dest: "/home/jenkins/key-webapplication-prd-useast1-001.pem"
       mode: '0400'
-      owner: jenkins      
+      owner: ec2-user      
     when: ec2_key_result.changed
