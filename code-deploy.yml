@@ -1,0 +1,6 @@
+- name: Copy Files to Application Server
+  ansible.builtin.copy:
+    src: /home/jenkins/code
+    dest: /var/www/html/
+    owner: ec2-user
+    mode: '0644'
