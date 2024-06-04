@@ -6,7 +6,7 @@
   tasks:
   - name: read property in properties file
     command:
-      cmd: "grep subnet_id properties"
+      cmd: "grep subnet_id /home/jenkins/properties"
     register: property
   - name: show property
     debug:
