@@ -16,6 +16,6 @@
   - name: Update Properties File
     ansible.builtin.lineinfile:
       path: /home/jenkins/properties
-      search_string: 'subnet_id'
-      line: subnet_id={{subnet_properties.subnet.id}}
+      search_string: 'subnet-'
+      line: {{subnet_properties.subnet.id}}
       create: yes
