@@ -4,13 +4,13 @@
   vars:
     ansible_python_interpreter: "/usr/bin/python3.9"
   tasks:
-  - name: Read log file
-    slurp:
-      src: /home/jenkins/properties
-    register: properties
-  - name: Show properties file
+  - name: read property in properties file
+    command:
+      cmd: "grep subnet_id properties"
+    register: property
+  - name: show property
     debug:
-      msg: "{{ properties['content'] | b64decode }}"
+      var: property
   - name: start an instance with a public IP address
     amazon.aws.ec2_instance:
       name: "ec2-webapplication-prd-useast1-001"
