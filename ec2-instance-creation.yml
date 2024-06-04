@@ -8,7 +8,7 @@
     amazon.aws.ec2_instance:
       name: "ec2-webapplication-prd-useast1-001"
       key_name: "key-webapplication-prd-useast1-001"
-      #vpc_subnet_id: subnet-070d6e690f0854178
+      vpc_subnet_id: subnet-070d6e690f0854178
       instance_type: t2.medium
       #security_group: "sg-webapplication-prd-useast1-001"
       network:
@@ -25,6 +25,3 @@
       path: /etc/ansible/hosts
       search_string: 'application_server ansible_host'
       line: application_server ansible_host={{instance_properties.instances[0].public_ip_address}}
-      
-      
-      subnet-070d6e690f0854178
