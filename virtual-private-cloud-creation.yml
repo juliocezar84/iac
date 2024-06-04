@@ -10,4 +10,12 @@
       cidr_block: "10.10.0.0/24"
       region: "us-east-1"
       state: present
-    register: vpc
+    register: vpc_properties
+  - name: show variables
+    debug:
+      var: vpc_properties.vpc.id
+  - name: Update Properties File
+    ansible.builtin.lineinfile:
+      path: /home/jenkins/properties
+      search_string: 'vpc_id'
+      line: vpc_id={{vpc_properties.vpc.id}}
