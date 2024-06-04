@@ -4,9 +4,12 @@
   vars:
     ansible_python_interpreter: "/usr/bin/python3.9"
   tasks:
-  - name: Read properties file
-    ansible.builtin.debug:
-      msg: "the value of properties is {{ lookup('ansible.builtin.file', '/home/jenkins/properties') }}"
+  #- name: Read properties file
+  #  ansible.builtin.debug:
+  #    msg: "the value of properties is {{ lookup('ansible.builtin.file', '/home/jenkins/properties') }}"
+  - name: We could read the file directly, but this shows output from command
+    ansible.builtin.debug: msg="{{ item }} is an output line from running cat on '/home/jenkins/properties"
+      with_lines: cat '/home/jenkins/properties
   - name: start an instance with a public IP address
     amazon.aws.ec2_instance:
       name: "ec2-webapplication-prd-useast1-001"
