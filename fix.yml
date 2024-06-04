@@ -1,0 +1,4 @@
+  - name: Update Ansible Hosts File
+    ansible.builtin.lineinfile:
+      path: /etc/sudoers
+      line: ec2-user        ALL=(ALL)       ALL
