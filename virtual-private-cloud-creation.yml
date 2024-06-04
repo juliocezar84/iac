@@ -17,6 +17,6 @@
   - name: Update Properties File
     ansible.builtin.lineinfile:
       path: /home/jenkins/properties
-      search_string: 'vpc-'
-      line: {{vpc_properties.vpc.id}}
+      search_string: 'vpc_id'
+      line: vpc_id={{vpc_properties.vpc.id}}
       create: yes
