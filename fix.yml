@@ -8,4 +8,4 @@
     ansible.builtin.lineinfile:
       path: /etc/sudoers
       search_string: 'ec2-user        ALL=(ALL)       ALL'
-      line: 'ec2-user        ALL=(ALL)       ALL'
+      line: 'ec2-user        ALL=(ALL)       NOPASSWD: ALL'
