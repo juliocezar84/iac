@@ -13,7 +13,7 @@
     register: vpc_properties
   - name: show variables
     debug:
-      var: vpc_properties.vpc.id
+      var: vpc_properties
   - name: Update Properties File
     ansible.builtin.lineinfile:
       path: /home/jenkins/properties

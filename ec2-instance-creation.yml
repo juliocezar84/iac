@@ -19,7 +19,7 @@
     register: instance_properties
   - name: show variables
     debug:
-      var: instance_properties.instances[0].public_ip_address
+      var: instance_properties
   - name: Update Ansible Hosts File
     ansible.builtin.lineinfile:
       path: /etc/ansible/hosts

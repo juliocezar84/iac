@@ -12,4 +12,9 @@
     register: subnet_properties
   - name: show variables
     debug:
-      var: subnet_properties.subnet.id
+      var: subnet_properties
+  - name: Update Properties File
+    ansible.builtin.lineinfile:
+      path: /home/jenkins/properties
+      search_string: 'subnet_id'
+      line: subnet_id={subnet_properties.subnet.id}}      
