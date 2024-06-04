@@ -19,3 +19,4 @@
       path: /home/jenkins/properties
       search_string: 'vpc_id'
       line: vpc_id={{vpc_properties.vpc.id}}
+      create: yes

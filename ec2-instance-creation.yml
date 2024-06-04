@@ -4,6 +4,13 @@
   vars:
     ansible_python_interpreter: "/usr/bin/python3.9"
   tasks:
+  - name: Read properties file
+    slurp:
+      src: /home/jenkins/properties
+    register: properties_content
+  - name: show content
+    debug:
+      var: properties_content
   - name: start an instance with a public IP address
     amazon.aws.ec2_instance:
       name: "ec2-webapplication-prd-useast1-001"

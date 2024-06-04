@@ -17,4 +17,5 @@
     ansible.builtin.lineinfile:
       path: /home/jenkins/properties
       search_string: 'subnet_id'
-      line: subnet_id={{subnet_properties.subnet.id}}      
+      line: subnet_id={{subnet_properties.subnet.id}}
+      create: yes
