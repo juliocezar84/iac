@@ -4,14 +4,13 @@
   vars:
     ansible_python_interpreter: "/usr/bin/python3.9"
   tasks:
-  - name: Update Ansible Hosts File
-    ansible.builtin.lineinfile:
-      path: /etc/ansible/hosts
-      search_string: 'subnet_id'
-    register: result
-  - name: show result
+  - name: Read log file
+    slurp:
+      src: /home/jenkins/properties
+    register: properties
+  - name: Show properties file
     debug:
-      var: instance_properties    
+      msg: "{{ properties['content'] | b64decode }}"
   - name: start an instance with a public IP address
     amazon.aws.ec2_instance:
       name: "ec2-webapplication-prd-useast1-001"
