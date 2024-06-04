@@ -6,10 +6,11 @@
   tasks:
   - name: create subnet
     amazon.aws.ec2_vpc_subnet:
+      name: "vpc-webapplication-prd-useast1-001"
       state: present
       vpc_id: vpc-0a2febc34e4f13fab
       cidr: 10.10.0.0/24
-    register: subnet_id
+    register: subnet_properties
   - name: show variables
     debug:
-      var: subnet_id
+      var: subnet_properties.subnet.id
