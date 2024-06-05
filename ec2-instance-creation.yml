@@ -5,7 +5,7 @@
     ansible_python_interpreter: "/usr/bin/python3.9"
   tasks:
   - name: read property in properties file
-    ansible.builtin.shell: grep subnet_id /home/jenkins/properties
+    ansible.builtin.shell: grep subnet_id /home/jenkins/properties | cut -d= -f2
     register: property
   - name: show property
     debug:
