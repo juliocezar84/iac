@@ -14,7 +14,7 @@
     amazon.aws.ec2_instance:
       name: "ec2-webapplication-prd-useast1-001"
       key_name: "key-webapplication-prd-useast1-001"
-      vpc_subnet_id: subnet-070d6e690f0854178
+      vpc_subnet_id: {{property.stdout}}
       instance_type: t2.medium
       #security_group: "sg-webapplication-prd-useast1-001"
       network:
