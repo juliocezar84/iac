@@ -4,10 +4,16 @@
   vars:
     ansible_python_interpreter: "/usr/bin/python3.9" 
   tasks:
+  - name: read property in properties file
+    ansible.builtin.shell: grep vpc_id /home/jenkins/properties | cut -d= -f2
+    register: property
+  - name: show property
+    debug:
+      var: property  
   - name: create subnet
     amazon.aws.ec2_vpc_subnet:
       state: present
-      vpc_id: vpc-0a2febc34e4f13fab
+      vpc_id: "{{property.stdout}}"
       cidr: 10.10.0.0/24
     register: subnet_properties
   - name: show variables
