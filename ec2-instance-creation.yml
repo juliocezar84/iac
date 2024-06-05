@@ -6,11 +6,11 @@
   tasks:
   - name: read property in properties file
     command:
-      cmd: "grep subnet_id /home/jenkins/properties"
+      cmd: "grep subnet_id /home/jenkins/properties | cut -d= -f2"
     register: property
   - name: show property
     debug:
-      var: property.stdout
+      var: property
   - name: start an instance with a public IP address
     amazon.aws.ec2_instance:
       name: "ec2-webapplication-prd-useast1-001"
