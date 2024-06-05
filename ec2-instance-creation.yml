@@ -7,7 +7,7 @@
   - name: read property in properties file
     ansible.builtin.shell: grep subnet_id /home/jenkins/properties | cut -d= -f2
     register: property
-  - name: show property
+  - name: show property.stdout
     debug:
       var: property
   - name: start an instance with a public IP address
