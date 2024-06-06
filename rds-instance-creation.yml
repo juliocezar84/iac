@@ -1,0 +1,24 @@
+- name: RDS Instance Creation
+  hosts: localhost
+  gather_facts: no
+  vars:
+    ansible_python_interpreter: "/usr/bin/python3.9"
+  tasks:
+  - name: start an instance
+    amazon.aws.rds_instance:
+      engine: mysql
+      db_instance_identifier: "rds-webapplication-prd-useast1-001"
+      instance_type: db.t2.small
+      password: vicente #"{{ password }}"
+      username: vicente #"{{ username }}"
+      state: running
+      wait: yes
+    register: instance_properties
+  - name: show variables
+    debug:
+      var: instance_properties
+  - name: Update Ansible Hosts File
+    ansible.builtin.lineinfile:
+      path: /etc/ansible/hosts
+      search_string: 'database_server ansible_host'
+      line: database_server ansible_host={{instance_properties.instances[0].public_ip_address}}      
