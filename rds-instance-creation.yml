@@ -9,8 +9,10 @@
       engine: mysql
       db_instance_identifier: "rds-webapplication-prd-useast1-001"
       instance_type: db.t2.small
+      db_name: "db-prd-useast1-001"
       password: vicente #"{{ password }}"
       username: vicente #"{{ username }}"
+      vpc_security_group_ids: sg-0a6c0555b80fa6df9
       state: running
       wait: yes
     register: instance_properties
