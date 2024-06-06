@@ -12,7 +12,8 @@
       db_name: "db-prd-useast1-001"
       password: vicente #"{{ password }}"
       username: vicente #"{{ username }}"
-      vpc_security_group_ids: sg-0a8fa5a3b73b33900
+      vpc_security_group_ids:
+        - sg-0a8fa5a3b73b33900
       state: running
       wait: yes
     register: instance_properties
