@@ -11,7 +11,7 @@
       region: us-east-1
       state: present
     register: properties
-  - name: show variables
+  - name: show properties
     debug:
       var: properties
   - name: Update Properties File

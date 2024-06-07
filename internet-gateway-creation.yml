@@ -4,7 +4,6 @@
   vars:
     ansible_python_interpreter: "/usr/bin/python3.9"
   tasks:
-  tasks:
   - name: read property in properties file
     ansible.builtin.shell: grep vpc_id /home/jenkins/properties | cut -d= -f2
     register: property
@@ -24,4 +23,4 @@
       path: /home/jenkins/properties
       search_string: 'internet-gateway-id'
       line: internet-gateway-id={{properties.gateway_id}}
-      create: yes    
+      create: yes

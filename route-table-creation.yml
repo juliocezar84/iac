@@ -1,0 +1,44 @@
+- name: Create Route Table
+  hosts: localhost
+  gather_facts: no
+  vars:
+    ansible_python_interpreter: "/usr/bin/python3.9"
+  tasks:
+  - name: read vpc_id in properties file
+    ansible.builtin.shell: grep vpc_id /home/jenkins/properties | cut -d= -f2
+    register: vpc_id
+  - name: show vpc_id
+    debug:
+      var: vpc_id
+  - name: read subnet_az_a_id in properties file
+    ansible.builtin.shell: grep subnet_az_a_id /home/jenkins/properties | cut -d= -f2
+    register: subnet_az_a_id
+  - name: show subnet_az_a_id
+    debug:
+      var: subnet_az_a_id
+  - name: read subnet_az_b_id in properties file
+    ansible.builtin.shell: grep subnet_az_b_id /home/jenkins/properties | cut -d= -f2
+    register: subnet_az_b_id
+  - name: show subnet_az_b_id
+    debug:
+      var: subnet_az_b_id
+- name: read gateway_id in properties file
+    ansible.builtin.shell: grep gateway_id /home/jenkins/properties | cut -d= -f2
+    register: gateway_id
+  - name: show gateway_id
+    debug:
+      var: gateway_id      
+  - name: create route table
+    amazon.aws.ec2_vpc_route_table:
+      vpc_id: "{{vpc_id.stdout}}"
+      region: us-east-1
+      subnets:
+        - "{{subnet_az_a_id.stdout}}"
+        - "{{subnet_az_b_id.stdout}}"
+      routes:
+        - dest: 0.0.0.0/0
+          gateway_id: "{{gateway_id.stdout}}"
+    register: properties
+  - name: show properties
+    debug:
+      var: properties
