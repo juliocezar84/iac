@@ -10,9 +10,9 @@
   - name: show property
     debug:
       var: property    
-  - name: create subnet for first az
+  - name: create subnet for second az
     amazon.aws.ec2_vpc_subnet:
-      vpc_id: "{{ property.vpc.id }}"
+      vpc_id: "{{property.stdout}}"
       state: present
       az: us-east-1b
       cidr: 10.0.1.0/28
