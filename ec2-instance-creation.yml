@@ -4,20 +4,20 @@
   vars:
     ansible_python_interpreter: "/usr/bin/python3.9"
   tasks:
-  - name: read property in properties file
+  - name: read subnet_id in properties file
     ansible.builtin.shell: grep subnet_id /home/jenkins/properties | cut -d= -f2
-    register: property
-  - name: show property
+    register: subnet_id
+  - name: show subnet_id
     debug:
-      var: property
+      var: subnet_id
   - name: start an instance with a public IP address
     amazon.aws.ec2_instance:
       name: "ec2-webapplication-prd-useast1-001"
       key_name: "key-webapplication-prd-useast1-001"
-      #vpc_subnet_id: "{{property.stdout}}"
-      vpc_subnet_id: subnet-070d6e690f0854178
+      vpc_subnet_id: "{{subnet_id.stdout}}"
+      #vpc_subnet_id: subnet-070d6e690f0854178
       instance_type: t2.medium
-      #security_group: "sg-webapplication-prd-useast1-001"
+      security_group: ssh-web
       network:
         assign_public_ip: true
       image_id: ami-0fe630eb857a6ec83
