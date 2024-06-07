@@ -4,12 +4,12 @@
   vars:
     ansible_python_interpreter: "/usr/bin/python3.9"
   tasks:
-  - name: read vpcid in properties file
+  - name: read vpc_id in properties file
     ansible.builtin.shell: grep vpc_id /home/jenkins/properties | cut -d= -f2
-    register: vpcid
-  - name: show vpcid
+    register: vpc_id
+  - name: show vpc_id
     debug:
-      var: vpcid
+      var: vpc_id
   - name: read subnet_az_a_id in properties file
     ansible.builtin.shell: grep subnet_az_a_id /home/jenkins/properties | cut -d= -f2
     register: subnet_az_a_id
@@ -22,7 +22,7 @@
   - name: show subnet_az_b_id
     debug:
       var: subnet_az_b_id
-- name: read gateway_id in properties file
+  - name: read gateway_id in properties file
     ansible.builtin.shell: grep gateway_id /home/jenkins/properties | cut -d= -f2
     register: gateway_id
   - name: show gateway_id
