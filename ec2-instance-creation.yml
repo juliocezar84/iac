@@ -4,12 +4,12 @@
   vars:
     ansible_python_interpreter: "/usr/bin/python3.9"
   tasks:
-  - name: read property in properties file
+  - name: read properties in properties file
     ansible.builtin.shell: grep subnet_id /home/jenkins/properties | cut -d= -f2
-    register: property
-  - name: show property
+    register: properties
+  - name: show properties
     debug:
-      var: property
+      var: properties
   - name: start an instance with a public IP address
     amazon.aws.ec2_instance:
       name: "ec2-webapplication-prd-useast1-001"
@@ -23,12 +23,12 @@
       image_id: ami-0fe630eb857a6ec83
       state: running
       wait: yes
-    register: instance_properties
+    register: properties
   - name: show variables
     debug:
-      var: instance_properties
+      var: properties
   - name: Update Ansible Hosts File
     ansible.builtin.lineinfile:
       path: /etc/ansible/hosts
       search_string: 'application_server ansible_host'
-      line: application_server ansible_host={{instance_properties.instances[0].public_ip_address}}
+      line: application_server ansible_host={{properties.instances[0].public_ip_address}}
