@@ -1,0 +1,25 @@
+- name: Create Security Group
+  hosts: localhost
+  gather_facts: no
+  vars:
+    ansible_python_interpreter: "/usr/bin/python3.9" 
+  tasks:
+- name: read vpc_id in properties file
+    ansible.builtin.shell: grep vpc_id /home/jenkins/properties | cut -d= -f2
+    register: vpc_id
+  - name: show vpc_id
+    debug:
+      var: vpc_id  
+  - name: create security group
+    amazon.aws.ec2_group:
+      - name: ssh-web
+        description: allow ssh and http
+        vpc_id: "{{{vpc_id.stdout}}"
+        region: ap-southeast-3
+      rules:
+        - proto: tcp
+          ports: 22
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp
+            ports: 80
+            cidr_ip: 0.0.0.0/0
