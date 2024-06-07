@@ -1,0 +1,27 @@
+- name: Create Internet Gateway
+  hosts: localhost
+  gather_facts: no
+  vars:
+    ansible_python_interpreter: "/usr/bin/python3.9"
+  tasks:
+  tasks:
+  - name: read property in properties file
+    ansible.builtin.shell: grep vpc_id /home/jenkins/properties | cut -d= -f2
+    register: property
+  - name: show property
+    debug:
+      var: property
+  - name: create internet gateway
+    amazon.aws.ec2_vpc_igw:
+      vpc_id: "{{property.stdout}}"
+      state: present
+    register: properties
+  - name: show properties
+    debug:
+      var: properties    
+  - name: Update Properties File
+    ansible.builtin.lineinfile:
+      path: /home/jenkins/properties
+      search_string: 'internet-gateway-id'
+      line: internet-gateway-id={{properties.igw.id}}
+      create: yes    
