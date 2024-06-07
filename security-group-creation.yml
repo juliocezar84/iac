@@ -14,7 +14,7 @@
     amazon.aws.ec2_group:
       name: ssh-web
       description: allow ssh and http
-      vpc_id: "{{{vpc_id.stdout}}"
+      vpc_id: "{{vpc_id.stdout}}"
       region: us-east-1
       rules:
         - proto: tcp
