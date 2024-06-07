@@ -1,0 +1,26 @@
+- name: Subnet AZ A Creation
+  hosts: localhost
+  gather_facts: no
+  vars:
+    ansible_python_interpreter: "/usr/bin/python3.9"
+  tasks:
+  - name: read property in properties file
+    ansible.builtin.shell: grep vpc_id /home/jenkins/properties | cut -d= -f2
+    register: property
+  tasks:    
+  - name: create subnet for first az
+    amazon.aws.ec2_vpc_subnet:
+      vpc_id: "{{ property.vpc.id }}"
+      state: present
+      az: us-east-1a
+      cidr: 10.0.1.0/28
+    register: properties
+  - name: show properties
+    debug:
+      var: properties    
+  - name: Update Properties File
+    ansible.builtin.lineinfile:
+      path: /home/jenkins/properties
+      search_string: 'subnet-az-a-id'
+      line: subnet-az-a-id={{properties.subnet.id}}
+      create: yes      
