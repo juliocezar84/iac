@@ -22,5 +22,5 @@
     ansible.builtin.lineinfile:
       path: /home/jenkins/properties
       search_string: 'internet-gateway-id'
-      line: internet-gateway-id={{properties.gateway_id}}
+      line: internet_gateway_id={{properties.gateway_id}}
       create: yes

@@ -24,5 +24,5 @@
     ansible.builtin.lineinfile:
       path: /home/jenkins/properties
       search_string: 'subnet-az-b-id'
-      line: subnet-az-b-id={{properties.subnet.id}}
+      line: subnet_az_b_id={{properties.subnet.id}}
       create: yes
