@@ -7,7 +7,9 @@
   - name: read properties in properties file
     ansible.builtin.shell: grep vpc_id /home/jenkins/properties | cut -d= -f2
     register: properties
-  tasks:    
+  - name: show properties
+    debug:
+      var: properties    
   - name: create subnet for first az
     amazon.aws.ec2_vpc_subnet:
       vpc_id: "{{ properties.vpc.id }}"
@@ -23,4 +25,4 @@
       path: /home/jenkins/properties
       search_string: 'subnet-az-b-id'
       line: subnet-az-b-id={{properties.subnet.id}}
-      create: yes      
+      create: yes
