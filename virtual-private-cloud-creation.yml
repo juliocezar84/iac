@@ -6,17 +6,17 @@
   tasks:
   - name: create VPC
     ec2_vpc_net:
-      name: "vpc-webapplication-prd-useast1-001"
-      cidr_block: "10.10.0.0/24"
-      region: "us-east-1"
+      name: vpc-webapplication-prd-useast1-001
+      cidr_block: 10.0.0.0/16
+      region: us-east-1
       state: present
-    register: vpc_properties
+    register: properties
   - name: show variables
     debug:
-      var: vpc_properties
+      var: properties
   - name: Update Properties File
     ansible.builtin.lineinfile:
       path: /home/jenkins/properties
       search_string: 'vpc_id'
-      line: vpc_id={{vpc_properties.vpc.id}}
+      line: vpc_id={{properties.vpc.id}}
       create: yes
