@@ -8,11 +8,7 @@
   - name: Git Clone
     ansible.builtin.git:
       repo: https://github.com/juliocezar84/code.git
-      dest: /home/ec2-user
+      dest: /var/www/html/
       force: true
       single_branch: yes
       version: main
-  - name: Copy Files
-    ansible.builtin.copy:
-      src: /home/ec2-user/
-      dest: /var/www/html
