@@ -10,4 +10,4 @@
       repo: https://github.com/juliocezar84/code.git
       dest: /var/www/html
       single_branch: yes
-      version: master
+      version: main
