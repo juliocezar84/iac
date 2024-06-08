@@ -1,5 +1,5 @@
 - name: Clone Repository
-  hosts: Clone Repository
+  hosts: application_server
   gather_facts: no
   become: true
   vars:
