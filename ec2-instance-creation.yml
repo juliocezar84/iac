@@ -22,6 +22,9 @@
       image_id: ami-0fe630eb857a6ec83
       state: running
       wait: yes
+  - name: Pause for 30 seconds
+    ansible.builtin.pause:
+      seconds: 30
     register: properties
   - name: show variables
     debug:
