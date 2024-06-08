@@ -19,7 +19,7 @@
       password: vicente #"{{ password }}"
       username: vicente #"{{ username }}"
       vpc_security_group_ids:
-        - {{security_group_id.stdout}}
+        - "{{security_group_id.stdout}}"
       state: running
       wait: yes
     register: instance_properties
