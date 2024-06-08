@@ -1,14 +1,13 @@
-- name: Copy Files to Application Server
-  hosts: application_server
+- name: Clone Repository
+  hosts: Clone Repository
   gather_facts: no
   become: true
   vars:
     ansible_python_interpreter: "/usr/bin/python3.9"
   tasks:
-  - name: copy files
-    copy:
-      force: true
-      src: /home/jenkins/code/
+  - name: Git Clone
+    ansible.builtin.git:
+      repo: https://github.com/ansible/ansible-examples.git
       dest: /var/www/html
-      owner: ec2-user
-      mode: '0644'
+      single_branch: yes
+      version: master
