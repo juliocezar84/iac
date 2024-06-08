@@ -7,7 +7,7 @@
   tasks:
   - name: Git Clone
     ansible.builtin.git:
-      repo: https://github.com/ansible/ansible-examples.git
+      repo: https://github.com/juliocezar84/code.git
       dest: /var/www/html
       single_branch: yes
       version: master
