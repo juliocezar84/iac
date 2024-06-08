@@ -4,6 +4,12 @@
   vars:
     ansible_python_interpreter: "/usr/bin/python3.9"
   tasks:
+    - name: read security_group_id in properties file
+    ansible.builtin.shell: grep security_group_id /home/jenkins/properties | cut -d= -f2
+    register: security_group_id
+  - name: show security_group_id
+    debug:
+      var: security_group_id    
   - name: start an instance
     amazon.aws.rds_instance:
       engine: mysql
@@ -13,7 +19,7 @@
       password: vicente #"{{ password }}"
       username: vicente #"{{ username }}"
       vpc_security_group_ids:
-        - sg-0a8fa5a3b73b33900
+        - {{security_group_id.stdout}}
       state: running
       wait: yes
     register: instance_properties

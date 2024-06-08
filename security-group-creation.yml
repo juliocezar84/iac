@@ -23,3 +23,13 @@
         - proto: tcp
           ports: 80
           cidr_ip: 0.0.0.0/0
+    register: security_group_properties
+  - name: show variables
+    debug:
+      var: security_group_properties
+  - name: Update Properties File
+    ansible.builtin.lineinfile:
+      path: /home/jenkins/properties
+      search_string: 'security_group_id'
+      line: security_group_id={{security_group_properties.group_id}}
+      create: yes          

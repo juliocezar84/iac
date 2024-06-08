@@ -15,7 +15,7 @@
       name: "ec2-webapplication-prd-useast1-001"
       key_name: "key-webapplication-prd-useast1-001"
       vpc_subnet_id: "{{subnet_id.stdout}}"
-      instance_type: t2.medium
+      instance_type: t2.micro
       security_group: ssh-web
       network:
         assign_public_ip: true
