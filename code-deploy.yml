@@ -14,5 +14,6 @@
       version: main
   - name: Copy Files
     ansible.builtin.copy:
+      remote_src: true
       src: /home/ec2-user/code/
       dest: /var/www/html
