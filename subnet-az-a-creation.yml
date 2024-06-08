@@ -15,7 +15,7 @@
       vpc_id: "{{property.stdout}}"
       state: present
       az: us-east-1a
-      cidr: 10.0.1.0/28
+      cidr: 172.31.0.0/20
     register: properties
   - name: show properties
     debug:
