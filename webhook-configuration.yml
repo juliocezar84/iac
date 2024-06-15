@@ -45,7 +45,7 @@
         
     - name: Copiar arquivo webhook.service para /etc/systemd/system/webhook.service
       copy:
-        src: /root/ansible-project/webhook.service
+        src: /home/jenkins/playbooks/webhook.service
         dest: /etc/systemd/system/webhook.service
         owner: root
         group: root
