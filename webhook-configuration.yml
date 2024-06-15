@@ -1,0 +1,86 @@
+---
+- name: Instalação de dependências
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Install Unzip
+      yum:
+        name: unzip
+        state: present
+
+    - name: Instalar Python 3.9 e pip
+      dnf:
+        name: python3.9-pip
+        state: present
+
+    - name: Criar diretório /opt/webhook
+      file:
+        path: /opt/webhook
+        state: directory
+        mode: '0755'
+
+    - name: Criar diretório /etc/systemd/system/
+      file:
+        path: /etc/systemd/system/
+        state: directory
+        mode: '0755'
+        
+    - name: Instalar flask, boto3 e botocore usando pip3.9
+      pip:
+        name: "{{ item }}"
+        executable: pip3.9
+      loop:
+        - ansible
+        - flask
+        - boto3
+        - botocore
+        
+    - name: Copiar arquivo webhook.py para /opt/webhook
+      copy:
+        src: /root/ansible-project/webhook.py
+        dest: /opt/webhook/webhook.py
+        owner: root
+        group: root
+        mode: '0644'
+        
+    - name: Copiar arquivo webhook.service para /etc/systemd/system/webhook.service
+      copy:
+        src: /root/ansible-project/webhook.service
+        dest: /etc/systemd/system/webhook.service
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Recarregar o daemon do systemd
+      command: systemctl daemon-reload
+
+    - name: Habilitar o serviço webhook
+      systemd:
+        name: webhook.service
+        enabled: yes
+
+    - name: Iniciar o serviço webhook
+      systemd:
+        name: webhook.service
+        state: started
+
+    - name: Instalar iptables-services
+      yum:
+        name: iptables-services
+        state: present
+
+    - name: Habilitar o serviço iptables
+      systemd:
+        name: iptables
+        enabled: yes
+
+    - name: Iniciar o serviço iptables
+      systemd:
+        name: iptables
+        state: started
+
+    - name: Adicionar regra para aceitar tráfego TCP na porta 80
+      command: iptables -I INPUT -p tcp --dport 80 -j ACCEPT
+
+    - name: Salvar as regras do iptables
+      command: service iptables save
