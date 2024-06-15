@@ -37,7 +37,7 @@
         
     - name: Copiar arquivo webhook.py para /opt/webhook
       copy:
-        src: /root/ansible-project/webhook.py
+        src: /home/jenkins/playbooks/webhook.py
         dest: /opt/webhook/webhook.py
         owner: root
         group: root
