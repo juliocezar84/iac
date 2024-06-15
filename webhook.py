@@ -7,7 +7,7 @@ app = Flask(__name__)
 def webhook():
     if request.method == 'POST':
         # Adicione lógica de segurança aqui para validar o payload
-        subprocess.run(["ansible-playbook", "/root/ansible-project/play6-app-web-deploy.yml"])
+        subprocess.run(["ansible-playbook", "/home/jenkins/playbooks/code-deploy.yml"])
         return 'Webhook received!', 200
     else:
         return 'Invalid request!', 400
