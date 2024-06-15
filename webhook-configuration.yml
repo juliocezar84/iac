@@ -81,6 +81,9 @@
 
     - name: Adicionar regra para aceitar tráfego TCP na porta 80
       command: iptables -I INPUT -p tcp --dport 80 -j ACCEPT
+      
+    - name: Adicionar regra para aceitar tráfego TCP na porta 8080
+      command: iptables -I INPUT -p tcp --dport 8080 -j ACCEPT
 
     - name: Salvar as regras do iptables
       command: service iptables save
